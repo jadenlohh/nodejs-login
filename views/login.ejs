@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link href="./login.css" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/aa241108d7.js" crossorigin="anonymous"></script>
+    <title>Login page</title>
+  </head>
+
+  <body>
+    <div class="login-form">
+      <h1>Team Express <i class="fas fa-angle-double-right"></i></h1>
+			<h4>Sign in to your express account</h4>
+
+			<form action="login" method="POST">        
+        <label for="email">Email</label><br>
+				<input type="email" name="email" value= "<%= typeof email != 'undefined' ? email: '' %>" required>
+        
+        <label for="password">Password</label><br>
+        <input type="password" name="password" value= "<%= typeof password != 'undefined' ? password: '' %>" required>
+
+        <p id= "error">
+          <%if(typeof errors != 'undefined') { %>
+            <i class="fas fa-exclamation-triangle"></i> <%= errors[0].msg%></p>
+          <% } %>
+        </p>
+
+        <input type="submit" value="Login" id="login">
+
+        <p id="register">Don't have an account? <a href="register">Sign up</a></p>
+			</form>
+
+		</div>
+  </body>
+</html>

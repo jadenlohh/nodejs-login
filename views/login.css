@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Dekko&family=Delius&family=Raleway:wght@200&display=swap');
+
+
+body {
+  background-image: url('images/background.png')
+}
+.login-form {
+  background-color: #ffffff;
+  border: 1px solid #e1e2ea;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 #cccccc, 0 6px 20px 0 #cccccc;
+  font-family: Helvetica;
+  padding: 10vw 5vw;
+  padding-top: 3vw;
+  text-decoration: none;
+  margin: 6vw auto;
+	width: 300px;
+  z-index: 1;
+}
+.login-form h1 {
+  color: #4d4d4d;
+	text-align: center;
+	font-size: 26px;
+	padding: 20px 0 20px 0;
+}
+.login-form h4 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 17px;
+  text-align: center;
+  margin-top: -1.8vw;
+}
+.login-form label {
+  font-family: 'Delius', cursive;
+}
+.login-form input[type="password"],
+.login-form input[type="text"],
+.login-form input[type="email"] {
+  border: 1px solid #dddddd;
+  box-sizing: border-box;
+  border-radius: 6px;
+	padding: 15px;
+	margin-bottom: 15px;
+	width: 100%;
+}
+.login-form a {
+  text-decoration: none;
+}
+#error {
+  color: #ff6666;
+  font-size: 12px;
+  margin-top: -0.5vw;
+}
+#login {
+	background-color: #535b63;
+	border: 0;
+  border-radius: 6px;
+	box-sizing: border-box;
+	cursor: pointer;
+  color: #ffffff;
+	padding: 15px;
+  outline: none;
+	font-weight: bold;
+  margin-top: 1vw;
+  width: 100%;
+}
+#register {
+  float: left;
+  font-size: 14px;
+  margin-top: 1vw;
+}
+
+
+@media screen and (max-width: 600px) {
+  .login-form{
+    padding: 25vw 5vw;
+    padding-top: 10vw;
+    width: 300px;
+  }
+  .login-form h4 {
+    margin-top: -7vw;
+  }
+  .login-form input[type="password"],
+  .login-form input[type="text"] {
+    border: 1px solid #dddddd;
+    box-sizing: border-box;
+    border-radius: 6px;
+  	padding: 12px;
+  	margin-bottom: 15px;
+  	width: 100%;
+  }
+  #forgotPwd {
+    font-size: 12px;
+    float: right;
+    margin-top: -20vw;
+  }
+  #register {
+    margin-top: 2.5vw;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  #forgotPwd {
+    margin-top: 15vw;
+  }
+}

@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link href="./register.css" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/aa241108d7.js" crossorigin="anonymous"></script>
+    <title>Register page</title>
+  </head>
+
+  <body>
+    <div class="register-form">
+			<h1>Team Express <i class="fas fa-angle-double-right"></i></h1>
+			<h4>Create your own express account</h4>
+
+			<form action="register" method="POST">
+        <label for="firstName">First name</label><br>
+				<input type="text" name="firstName" value= "<%= typeof firstName != 'undefined' ? firstName: '' %>" required>
+
+        <label for="lastName">Last name</label><br>
+				<input type="text" name="lastName" value= "<%= typeof lastName != 'undefined' ? lastName: '' %>" required>
+
+        <label for="email">Email</label><br>
+        <input type="email" name="email" value= "<%= typeof email != 'undefined' ? email: '' %>" required>
+        
+        <label for="password">Password</label><br>
+        <input type="password" name="password" id="password" required>
+
+        <p id= "error">
+          <%if(typeof errors != 'undefined') { %>
+            <i class="fas fa-exclamation-triangle"></i> <%= errors[0].msg%></p>
+          <% } %>
+        </p>
+        
+        <input type="submit" value="Create account" id="register">
+
+        <p id="login">Have an account? <a href="/">Sign in</a></p>
+			</form>
+		</div>
+  </body>
+</html>
