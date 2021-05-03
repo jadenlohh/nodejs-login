@@ -1,16 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Dekko&family=Delius&family=Raleway:wght@200&display=swap');
 
 
-body {
-  background-image: url('images/background.png')
-}
 .register-form {
   background-color: #ffffff;
   border: 1px solid #e1e2ea;
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 #cccccc, 0 6px 20px 0 #cccccc;
   font-family: Helvetica;
-  padding: 8vw 6vw;
+  padding: 7vw 5vw;
   padding-top: 3vw;
   text-decoration: none;
   margin: 5vw auto;
