@@ -2,16 +2,17 @@
 
 
 body {
-  background-image: url('images/background.png')
+  overflow: hidden;
 }
 .login-form {
   background-color: #ffffff;
   border: 1px solid #e1e2ea;
-  border-radius: 5px;
+  border-radius: 8px;
   box-shadow: 0 4px 8px 0 #cccccc, 0 6px 20px 0 #cccccc;
   font-family: Helvetica;
-  padding: 10vw 5vw;
-  padding-top: 3vw;
+  padding: 0 4vw;
+  padding-top: 4vw;
+  padding-bottom: 9vw;
   text-decoration: none;
   margin: 6vw auto;
 	width: 300px;
