@@ -16,7 +16,9 @@
         <label for="email">Email</label><br>
 				<input type="email" name="email" value= "<%= typeof email != 'undefined' ? email: '' %>" required>
         
-        <label for="password">Password</label><br>
+        <label for="password">
+          Password <a href="forgot" id="forgotPwd">Forgot password?</a>
+        </label><br>
         <input type="password" name="password" value= "<%= typeof password != 'undefined' ? password: '' %>" required>
 
         <p id= "errorMsg">
