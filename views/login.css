@@ -15,7 +15,7 @@ body {
   padding-bottom: 9vw;
   text-decoration: none;
   margin: 6vw auto;
-	width: 300px;
+	width: 290px;
   z-index: 1;
 }
 .login-form h1 {
@@ -46,12 +46,12 @@ body {
 .login-form a {
   text-decoration: none;
 }
-#error {
+#errorMsg {
   color: #ff6666;
   font-size: 12px;
   margin-top: -0.5vw;
 }
-#login {
+#submitButton {
 	background-color: #535b63;
 	border: 0;
   border-radius: 6px;
@@ -69,13 +69,19 @@ body {
   font-size: 14px;
   margin-top: 1vw;
 }
-
+#forgotPwd {
+  float: right;
+  font-size: 12px;
+  padding: 0;
+  margin-top: 0.2vw;
+}
 
 @media screen and (max-width: 600px) {
   .login-form{
     padding: 25vw 5vw;
     padding-top: 10vw;
     width: 300px;
+    z-index: -999;
   }
   .login-form h4 {
     margin-top: -7vw;
@@ -89,15 +95,11 @@ body {
   	margin-bottom: 15px;
   	width: 100%;
   }
-  #forgotPwd {
-    font-size: 12px;
-    float: right;
-    margin-top: -20vw;
-  }
   #register {
     margin-top: 2.5vw;
   }
 }
+
 
 @media screen and (max-width: 1200px) {
   #forgotPwd {
