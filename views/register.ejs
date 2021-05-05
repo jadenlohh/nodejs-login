@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <link href="./register.css" rel="stylesheet" type="text/css">
+    <link href="./css/register.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/aa241108d7.js" crossorigin="anonymous"></script>
     <title>Register page</title>
   </head>
@@ -25,13 +25,13 @@
         <label for="password">Password</label><br>
         <input type="password" name="password" id="password" required>
 
-        <p id= "error">
+        <p id= "errorMsg">
           <%if(typeof errors != 'undefined') { %>
             <i class="fas fa-exclamation-triangle"></i> <%= errors[0].msg%></p>
           <% } %>
         </p>
         
-        <input type="submit" value="Create account" id="register">
+        <input type="submit" value="Create account" id="registerButton">
 
         <p id="login">Have an account? <a href="/">Sign in</a></p>
 			</form>
