@@ -16,7 +16,7 @@ app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/views'));
 
 // mongoDB
-const url = 'mongodb+srv://dbuser:emahqceags123@cluster0.vobnv.mongodb.net/website?retryWrites=true&w=majority';
+const url = process.env['mongo_url'];
 
 // bodyParser
 app.use(bodyParser.urlencoded({extended: false}));
