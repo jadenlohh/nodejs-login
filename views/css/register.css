@@ -43,7 +43,7 @@
   text-decoration: none;
 }
 
-#register {
+#registerButton {
 	background-color: #535b63;
 	border: 0;
   border-radius: 6px;
@@ -56,7 +56,7 @@
   margin-top: 1vw;
   width: 100%;
 }
-#error {
+#errorMsg {
   color: #ff6666;
   font-size: 12px;
   margin-top: -0.5vw;
