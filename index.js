@@ -3,9 +3,8 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const ejs = require('ejs');
-const passwordValidator = require('password-validator');
+const pwd = require('./password');
 const MongoClient = require('mongodb').MongoClient;
-
 
 
 // express
@@ -17,7 +16,7 @@ app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/views'));
 
 // mongoDB
-const url = process.env.MONGO_URL;
+const url = 'mongodb+srv://dbuser:emahqceags123@cluster0.vobnv.mongodb.net/website?retryWrites=true&w=majority';
 
 // bodyParser
 app.use(bodyParser.urlencoded({extended: false}));
@@ -25,28 +24,30 @@ app.use(bodyParser.urlencoded({extended: false}));
 // express session
 app.use(session({secret: 'secret', resave: true, saveUninitialized: true}));
 
-
-// passwordValidator
-var schema = new passwordValidator();
+// errors
 let errors = [];
 
 
-// GET request
+
+// main page
 app.get('/', function(request, response) {
   response.render('login');
 });
 
 
+// login page
 app.get('/login', function(request, response) {
   response.render('login');
 });
 
 
+// registration page
 app.get('/register', function(request, response) {
 	response.render('register');
 });
 
 
+// dashboard
 app.get('/dashboard', function(request, response) {
 	if (request.session.loggedin) {
     var user = request.session.username;
@@ -57,6 +58,8 @@ app.get('/dashboard', function(request, response) {
   };
 });
 
+
+// logout page
 app.get('/logout', function(request, response) {
   if (request.session.loggedin) {
   	request.session.loggedin = false;
@@ -96,31 +99,28 @@ app.post('/login', function(request, response) {
           password: password
         });
       } else {
-        // checks if password matches
-        bcrypt.compare(password, userData[0].password, function(err, result) {
-          if (err) throw err;
+        validPwd = pwd.checkValidPwd(password, userData[0].password)
 
-          if (result) {
-            request.session.loggedin = true;
+        if (validPwd) {
+          request.session.loggedin = true;
 
-            // gets user data
-				    request.session.userData = request.body.userData;
+          // gets user data
+          request.session.userData = request.body.userData;
 
-            response.redirect('/dashboard');
-          } else {
-            // clear all previous errors
-            errors.pop();
+          response.redirect('/dashboard');
+        } else {
+          // clear all previous errors
+          errors.pop();
 
-            // push error
-            errors.push({msg: 'Invalid email or password'});
+          // push error
+          errors.push({msg: 'Invalid email or password'});
 
-            response.render('login', {
-              errors: errors,
-              email: email,
-              password: password
-            });
-          };
-        });
+          response.render('login', {
+            errors: errors,
+            email: email,
+            password: password
+          });
+        };
       }
       db.close();
     });
@@ -131,15 +131,7 @@ app.post('/login', function(request, response) {
 app.post('/register', function(request, response) {
   var {firstName, lastName, email, password} = request.body;
 
-  // password criterias
-  schema.is().min(6)
-  .has().uppercase()
-  .has().lowercase()
-  .has().digits()
-  .has().not().spaces()
-  .is().not().oneOf([email, firstName, lastName]); 
-
-  var strongPasword = schema.validate(password);
+  var strongPasword = pwd.checkStrongPwd(firstName, lastName, email, password)
 
   if (strongPasword == false) {
     // clear all previous error
