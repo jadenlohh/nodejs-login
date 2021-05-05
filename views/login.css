@@ -1,11 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Dekko&family=Delius&family=Raleway:wght@200&display=swap');
 
 
-body {
-  overflow: hidden;
-}
 .login-form {
-  background-color: #ffffff;
   border: 1px solid #e1e2ea;
   border-radius: 8px;
   box-shadow: 0 4px 8px 0 #cccccc, 0 6px 20px 0 #cccccc;
@@ -14,7 +10,7 @@ body {
   padding-top: 4vw;
   padding-bottom: 9vw;
   text-decoration: none;
-  margin: 6vw auto;
+  margin: 4.5vw auto 0 auto;
 	width: 290px;
   z-index: 1;
 }
@@ -76,15 +72,27 @@ body {
   margin-top: 0.2vw;
 }
 
+
+/* media screen*/
 @media screen and (max-width: 600px) {
   .login-form{
-    padding: 25vw 5vw;
-    padding-top: 10vw;
-    width: 300px;
-    z-index: -999;
+    border: none;
+    border-radius: none;
+    box-shadow: none;
+    font-family: Helvetica;
+    padding: 0 4vw;
+    padding-top: 4vw;
+    padding-bottom: 9vw;
+    text-decoration: none;
+    margin: 14vw auto 0 auto;
+    width: 320px;
+  }
+  .login-form h1 {
+    font-size: 7.5vw;
   }
   .login-form h4 {
-    margin-top: -7vw;
+    font-size: 5vw;
+    margin-top: -8vw;
   }
   .login-form input[type="password"],
   .login-form input[type="text"] {
@@ -98,11 +106,10 @@ body {
   #register {
     margin-top: 2.5vw;
   }
-}
-
-
-@media screen and (max-width: 1200px) {
   #forgotPwd {
-    margin-top: 15vw;
+    float: right;
+    font-size: 12px;
+    padding: 0;
+    margin-top: 0.2vw;
   }
 }
