@@ -52,9 +52,9 @@ app.get('/dashboard', function(request, response) {
     if (request.session.loggedin) {
         var user = request.session.username;
         response.render('dashboard', {username: user});
-	} else {
-    response.redirect('/');	
-  };
+    } else {
+        response.redirect('/');	
+    };
 });
 
 
@@ -64,7 +64,7 @@ app.get('/logout', function(request, response) {
         request.session.loggedin = false;
         response.redirect('/');
     } else {
-      response.redirect('/');	
+        response.redirect('/');	
     };
 });
 
