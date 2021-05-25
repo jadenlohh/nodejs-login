@@ -51,7 +51,7 @@ app.get('/register', function(request, response) {
 app.get('/dashboard', function(request, response) {
     if (request.session.loggedin) {
         var user = request.session.username;
-		response.render('dashboard', {username: user});
+        response.render('dashboard', {username: user});
 	} else {
     response.redirect('/');	
   };
@@ -93,34 +93,34 @@ app.post('/login', function(request, response) {
             errors.push({msg: 'Invalid email or password'});
 
             response.render('login', {
-            errors: errors,
-            email: email,
-            password: password
-            });
-        } else {
-            bcrypt.compare(password, userData[0].password, function(err, result) {
-            if (result) {
-                request.session.loggedin = true;
-
-                // gets user data
-                request.session.userData = request.body.userData;
-
-                response.redirect('/dashboard');
-            } else {
-                // clear all previous errors
-                errors.pop();
-
-                // push error
-                errors.push({msg: 'Invalid email or password'});
-
-                response.render('login', {
                 errors: errors,
                 email: email,
                 password: password
-                });
-            };
             });
-        }
+        } else {
+            bcrypt.compare(password, userData[0].password, function(err, result) {
+                if (result) {
+                    request.session.loggedin = true;
+
+                    // gets user data
+                    request.session.userData = request.body.userData;
+
+                    response.redirect('/dashboard');
+                } else {
+                    // clear all previous errors
+                    errors.pop();
+
+                    // push error
+                    errors.push({msg: 'Invalid email or password'});
+
+                    response.render('login', {
+                        errors: errors,
+                        email: email,
+                        password: password
+                    });
+                };
+            });
+        };
         db.close();
         });
     });
@@ -158,43 +158,42 @@ app.post('/register', function(request, response) {
             // if user is new
             if (!userData.length) {
 
-            // generates salt
-            bcrypt.genSalt(10, function(err, salt) {
+                // generates salt
+                bcrypt.genSalt(10, function(err, salt) {
 
-                // encrypts password
-                bcrypt.hash(password, salt, function(err, hashedPassword) {
-                if (err) throw err;
+                    // encrypts password
+                    bcrypt.hash(password, salt, function(err, hashedPassword) {
+                        if (err) throw err;
 
-                let userData = {
-                    firstName: firstName,
-                    lastName: lastName,
-                    email: email,
-                    password: hashedPassword
-                };
+                        let userData = {
+                            firstName: firstName,
+                            lastName: lastName,
+                            email: email,
+                            password: hashedPassword
+                        };
 
-                // insert user in database
-                dbo.collection('credentials').insertOne(userData, function(err, result) {
-                    if (err) throw err;
+                        // insert user in database
+                        dbo.collection('credentials').insertOne(userData, function(err, result) {
+                            if (err) throw err;
 
-                    request.session.loggedin = true;
-                    request.session.userData = request.body.userData;
+                            request.session.loggedin = true;
+                            request.session.userData = request.body.userData;
     
-                    response.redirect('/dashboard');
-                    db.close();
+                            response.redirect('/dashboard');
+                            db.close();
+                        });
+                    });
                 });
-                });
-            });
             } else{
-            // push error
-            errors.push({msg: 'An account already exist with that email'});
+                // push error
+                errors.push({msg: 'An account already exist with that email'});
 
-            response.render('register', {
-                errors: errors,
-                firstName: firstName,
-                lastName: lastName
-            });
+                response.render('register', {
+                    errors: errors,
+                    firstName: firstName,
+                    lastName: lastName
+                });
             };
-        });
         });
     }; 
 });
