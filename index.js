@@ -99,28 +99,28 @@ app.post('/login', function(request, response) {
           password: password
         });
       } else {
-        validPwd = pwd.checkValidPwd(password, userData[0].password)
+        bcrypt.compare(password, userData[0].password, function(err, result) {
+          if (result) {
+            request.session.loggedin = true;
 
-        if (validPwd) {
-          request.session.loggedin = true;
+            // gets user data
+            request.session.userData = request.body.userData;
 
-          // gets user data
-          request.session.userData = request.body.userData;
+            response.redirect('/dashboard');
+          } else {
+            // clear all previous errors
+            errors.pop();
 
-          response.redirect('/dashboard');
-        } else {
-          // clear all previous errors
-          errors.pop();
+            // push error
+            errors.push({msg: 'Invalid email or password'});
 
-          // push error
-          errors.push({msg: 'Invalid email or password'});
-
-          response.render('login', {
-            errors: errors,
-            email: email,
-            password: password
-          });
-        };
+            response.render('login', {
+              errors: errors,
+              email: email,
+              password: password
+            });
+          };
+        });
       }
       db.close();
     });
